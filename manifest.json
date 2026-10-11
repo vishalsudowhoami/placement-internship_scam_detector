@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Email Analysis & Company Legitimacy Engine",
+  "version": "1.0.0",
+  "description": "Gmail Chrome Extension for automated email scam analysis, phishing detection, and company verification.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://mail.google.com/*"
+  ],
+  "background": {
+    "service_worker": "src/extension/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*"
+      ],
+      "js": [
+        "src/extension/content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "src/extension/popup/index.html",
+    "default_title": "Email Security Assistant"
+  }
+}
